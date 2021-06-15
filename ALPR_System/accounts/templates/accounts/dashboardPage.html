@@ -1,13 +1,48 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Dashboard</title>
-    </head>
-    <body>
-        <div>
-            <h1>Welcome to dashboard</h1>
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+{%  include 'accounts/status.html' %}
+
+
+<br>
+
+<div class="row">
+    <div class="col-md-5">
+        <h5>Residents:</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="">Add Resident</a>
+            <table class="table table-sm">
+                <tr>
+                    <th></th>
+                    <th>Resident's name</th>
+                    <th>Apartment unit</th>
+                </tr>
+
+            </table>
         </div>
-        <a href="{% url 'logout' %}">logout</a>
-    </body>
-</html>
+    </div>
+
+    <div class="col-md-7">
+        <h5>List of Vehicles</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="">Add vehicle</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>License plate</th>
+                    <th>Make/Model</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+        
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
 
