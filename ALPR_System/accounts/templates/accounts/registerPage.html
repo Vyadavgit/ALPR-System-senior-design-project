@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Register</title>
+    </head>
+    <body>
+        <div>
+
+            <form method="POST" action="">
+
+            <h1>Register account</h1>
+        {% csrf_token %}
+        <p>Enter first name:</p> {{form.first_name}}
+        <p>Enter last name:</p> {{form.last_name}}
+        <p>Enter username:</p> {{form.username}}
+        <p>Enter email</p> {{form.email}}
+        <p>Password:</p> {{form.password1}}
+        <p>Confirm password:</p> {{form.password2}}
+        <br><br>
+        <input type="submit" name="submit" class="submit action-button" value="Register" />
+        <a href="{% url 'login' %}">Already registered?</a>
+        <div>
+            {{form.errors}}
+        </div>
+    </form>
+    <a href="{% url 'home' %}">Back</a>
+    
+
+        </div>
+    </body>
+</html>
+
