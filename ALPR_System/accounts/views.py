@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .models import *
@@ -44,9 +45,11 @@ def loginFn(request):
     
     return render(request, 'accounts/loginPage.html', {})
 
+@login_required(login_url='login')
 def logoutFn(request):
     logout(request)
     return redirect('home')
 
+@login_required(login_url='login')
 def dashboardFn(request):
     return render(request, 'accounts/dashboardPage.html', {})
