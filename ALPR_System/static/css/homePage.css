@@ -1,0 +1,53 @@
+/* Credit: https://bootsnipp.com/snippets/vl4R7 */
+
+html,body{
+    background-image: url('../images/homebackground.jpeg'); /*image credit: https://www.observables.com/lpr/*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    }
+
+
+
+/* style inputs and link buttons */
+input,
+.btn {
+  width: 15%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 5px;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+input:hover,
+.btn:hover {
+  opacity: 0.5;
+}
+
+/* add appropriate colors to sign in and  register buttons */
+.sign {
+  background-color: #FFC312;
+  color: rgb(19, 18, 18);
+}
+
+.rgt {
+  background-color: #FFC312;
+  color: rgb(5, 5, 5);
+}
+
+.homediv{
+    margin: 180px 5px 5px 5px;
+    text-align: center;
+}
+
+.container{
+    margin: 30px 0px 0px 200px;
+    align-content: right;
+    text-align:right;
+    }
