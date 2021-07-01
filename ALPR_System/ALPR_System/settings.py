@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'phone_field',
     'accounts.apps.AccountsConfig',
+    'license.apps.LicenseConfig',
 
 ]
 
