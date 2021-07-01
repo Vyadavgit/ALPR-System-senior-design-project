@@ -16,3 +16,4 @@ class UserRegistrationForm(UserCreationForm):
     def clean_email(self, *args, **kwargs):
         user_input = self.cleaned_data.get("email")
         return user_input
+
