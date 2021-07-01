@@ -14,9 +14,15 @@ After you are ready to push a new feature/ready to update code follow commands b
 	*** git commit -m "WRITE A SHORT DESCRIPTION ABOUT MODIFICATIONS/FEATURES YOU ADDED" *** :- command to add short description<br />
 	*** git push *** :- command to push your code to repo [Please push it to your branch]<br />
 	<br />
-Other commands:<br />
+Other git commands:<br />
 	*** git checkout master *** :- command to switch to master branch<br />
 	*** git status *** :- command to check your current status <br />
 	*** git branch *** :- command to list available branches<br />
 	*** git branch BRANCHNAME -D *** :- command to delete branch<br />
 
+Create virtual environment: 
+*** python -m venv <name_of_virtualenv> ***
+<br>
+Create/update requirements.txt: *** pip freeze > requirements.txt  ***
+<br>
+Install requirements.txt: *** pip install -r requirements.txt ***
