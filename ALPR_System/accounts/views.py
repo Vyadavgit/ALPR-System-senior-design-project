@@ -19,9 +19,13 @@ def registerFn(request):
 
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
+
         if form.is_valid():
-            form.save()
+            curr_user = form.save()
             username = form.cleaned_data.get('username')
+
+            # customer (associated with the current registered user) created with provided minimal info during registeration
+            Customer.objects.create(user = curr_user, first_name=form.cleaned_data.get('first_name'), last_name=form.cleaned_data.get('last_name'), email=form.cleaned_data.get('email') )
 
             messages.success(request, 'Account successfully created for + ' + username)
 
