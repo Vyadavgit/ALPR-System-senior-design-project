@@ -1,24 +1,257 @@
+
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
 <head>
     <title>ALPR System</title>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{% static '/css/homePage.css' %}">
+    <link href="{% static '/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
 <body>
-        <div class="container"> 
-              <a href="{% url 'login' %}" class = "sign btn">
-                 Sign in</a>
-                 <a href="{% url 'register' %}" class = "rgt btn">
-                 Register </a>
-                 <a href="#" class = "sign btn">
-                    Contact us</a>
+
+    <header id="header" class="fixed-top d-flex align-items-center   header-transparent">
+        <div class="container d-flex justify-content-between align-items-center">
+    
+          <div id="logo">
+            <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
+           
+          </div>
+    
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+              <li><a class="nav-link scrollto" href="#about">About</a></li>
+              <li><a class="nav-link scrollto" href="#services">Services</a></li>
+              <li><a class="nav-link scrollto" href="#team">Team</a></li>
+              <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
         </div>
-    <div class="homediv">
-        <h1>Welcome to ALPR System</h1>    
-    </div>   
+    </header><!-- End Header -->
+
+    <section id="hero">
+        <div class="hero-container">
+          <h1>Welcome to ALPR System</h1>
+          <h2>We are team of .........</h2>
+          <br><br><br><br><br><br>
+          <form action="/action_page.php">  
+            <a href="{% url 'login' %}" class = "sign btn">
+               Sign in</a>
+               <a href="{% url 'register' %}" class = "rgt btn">
+               Register </a>
+          </form>
+        </div>
+    </section>
+    <!-- End Hero Section -->
+
+    <main id="main">
+
+      <!-- ======= About Section ======= -->
+      <section id="about">
+        <div class="container" >
+          <div class="section-header">
+            <h3 class="section-title">About Us</h3>
+            <p class="section-description">ALPR system is an Automated License Plate Recognition technology which will help all the household and business owner to easy access to open their gate and door by scanning their licence plate number.</p>
+          </div>
+          <div class="row about-container">  
+            <div class="col-lg-6 content order-lg-1 order-2">
+              <div class="icon-box" >
+                <div class="icon"></div>
+                <h4 class="title">About1</h4>
+                <p class="description">  ALPR system is an Automated License Plate Recognition technology which will help all the household and business owner to easy access to open their gate and door by scanning their licence plate number.</p>
+              </div>
+  
+              <div class="icon-box">
+                <div class="icon"></div>
+                <h4 class="title">About2</h4>
+                <p class="description"> ALPR system is an Automated License Plate Recognition technology which will help all the household and business owner to easy access to open their gate and door by scanning their licence plate number.</p>
+              </div>
+  
+              <div class="icon-box">
+                <div class="icon"></div>
+                <h4 class="title">About3</h4>
+                <p class="description"> ALPR system is an Automated License Plate Recognition technology which will help all the household and business owner to easy access to open their gate and door by scanning their licence plate number.</p>
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-6 background order-lg-2 order-1"></div>
+          </div>
+  
+        </div>
+      </section><!-- End About Section -->
+  
+      <!-- ======= Services Section ======= -->
+      <section id="services">
+        <div class="container" >
+          <div class="section-header">
+            <h3 class="section-title">Services</h3>
+            <p class="section-description">We provides best Automated License Plate Recognition technology for your business as well as your personal household</p>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-6" >
+              <div class="box">
+                <div class="icon"></div>
+                <h4 class="title">Automated Scan</h4>
+                <p class="description">Our System scan your vehicles autmatic and open the gate by using automated system</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6" >
+              <div class="box">
+                <div class="icon"></div>
+                <h4 class="title">Add Vehicles</h4>
+                <p class="description">In our system you can add your other vehicles and you can also add your friend's car in our system so that if your friend want to enter the door will automatically open.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6" >
+              <div class="box">
+                <div class="icon"></div>
+                <h4 class="title"> Available Parking Space</h4>
+                <p class="description">Our System notify your if all the parking areas are full and how many vehicles parking area are available.</p>
+              </div>
+            </div>
+
+          </div>
+  
+        </div>
+      </section><!-- End Services Section -->
+  
+      <!-- ======= Team Section ======= -->
+      <section id="team">
+        <div class="container">
+          <div class="section-header">
+            <h3 class="section-title">Team</h3>
+            <p class="section-description">We are FIVE GUYS from The University of Texas at Arlington. This project is build during the Computer System Design Project</p>
+          </div>
+          <div class="row">
+            <div class="col-lg-2 col-md-6">
+              <div class="member">
+                <div class="pic"><img src= "{% static 'images/Sid.jpg' %}" alt=""></div>
+                <h4>Siddharth</h4>
+                <div class="social">
+                  <a href="https://twitter.com/9Siddarth"><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/Sidwakeup1998/"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/sidgautam.8/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/gautamsiddharth/"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-2 col-md-6">
+              <div class="member">
+                <div class="pic"><img src= "{% static 'images/Pranay.jpg' %}" alt=""></div>
+                <h4>Pranay</h4>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/pranay.shakya"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/pranayshakya98/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/pranay-shakya-aa83841a2/"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-2 col-md-6">
+              <div class="member">
+                <div class="pic"><img src= "{% static 'images/Vivek.jpg' %}" alt=""></div>
+                <h4>Vivek</h4>
+                <div class="social">
+                  <a href="https://twitter.com/VivekKu70281518"><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/profile.php?id=100008854871999"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/vivek_k._yadav/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/vivek-kumar-yadav-50954117a/"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-2 col-md-6">
+              <div class="member">
+                <div class="pic"><img src= "{% static 'images/Anil.jpg' %}" alt=""></div>
+                <h4>Anil</h4>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href="https://www.facebook.com/anil.shrestha.12382"><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/anil_srs/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/anil-bhui-178949155/"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-2 col-md-6">
+              <div class="member">
+                <div class="pic"><img src= "{% static 'images/Bishal.jpg' %}" alt=""></div>
+                <h4>Bishal</h4>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=" https://www.facebook.com/profile.php?id=100021695529167 "><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/bishalsthaa/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/bishal-shrestha-080b08207/"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- End Team Section -->
+  
+      <!-- ======= Contact Section ======= -->
+      <section id="contact">
+        <div class="container">
+          <div class="section-header">
+            <h3 class="section-title">Contact</h3>  
+          </div>
+        </div>
+  
+        <div class="container mt-5">
+              <div class="info">
+                <div>
+                  <p><B>ALPR System</B></p>
+                  <p>1006 Greek Row<br>Arlington, TX 76013</p>
+                </div>
+  
+                <div>
+                  <i class="fa fa-envelope"></i>
+                  <p>info@example.com</p>
+                </div>
+  
+                <div>
+                  <i class="fa fa-phone"></i>
+                  <p>+1 111 111 1111</p>
+                </div>
+              </div>
+        </div>
+      </section><!-- End Contact Section -->
+  
+    </main><!-- End #main -->
+  
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+  
+        </div>
+      </div>
+  
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong>ALPR</strong>. All Rights Reserved
+        </div>
+        
+      </div>
+    </footer><!-- End Footer -->
+  
+    <script src="{% static 'js/homePage.js'  %}"></script>
+
+
 </body>
 </html>
+
+
+
+
+
