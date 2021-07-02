@@ -3,14 +3,14 @@ body{
 }
 
 #total-orders{
-	background-color: #FFC312;
+	background-color: rgb(152, 176, 236);
 }
 
 #orders-delivered{
-	background-color: #FFC312;
+	background-color: rgb(152, 176, 236);
 }
 
 #orders-pending{
-	background-color: #FFC312;
+	background-color: rgb(152, 176, 236);
 }
 

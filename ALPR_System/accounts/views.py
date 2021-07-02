@@ -57,3 +57,4 @@ def logoutFn(request):
 @login_required(login_url='login')
 def dashboardFn(request):
     return render(request, 'accounts/dashboardPage.html', {})
+

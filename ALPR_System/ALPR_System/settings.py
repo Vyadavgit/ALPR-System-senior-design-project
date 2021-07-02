@@ -85,15 +85,15 @@ DATABASES = {
     }
 }
 
-# LOCAL POSTGRES DATABASE FOR HOSTING STATIC FILES LOCALLY
+#LOCAL POSTGRES DATABASE FOR HOSTING STATIC FILES LOCALLY
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'alpr_system',
 #         'USER': 'postgres',
-#         'PASSWORD': '****',
-#         'HOST': '****',
-#         'PORT': '****'
+#         'PASSWORD': '***',
+#         'HOST': '***',
+#         'PORT': '***'
 #     }
 # }
 

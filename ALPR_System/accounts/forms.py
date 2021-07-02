@@ -8,10 +8,11 @@ class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
     email = forms.EmailField(required=True)
+    is_staff = forms.BooleanField(required=False)
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'is_staff']
 
     def clean_email(self, *args, **kwargs):
         user_input = self.cleaned_data.get("email")
