@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'license.apps.LicenseConfig',
 
+    'django_filters',
+
 ]
 
 MIDDLEWARE = [
