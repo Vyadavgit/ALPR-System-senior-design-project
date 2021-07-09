@@ -24,5 +24,24 @@ class Customer(models.Model):
             identity = str(self.id)
         return identity
 
+class Resident(models.Model):
+    name = models.CharField(max_length=50, null=True)
+    apartment_unit = models.CharField(max_length=50, null=True)
 
+    def __str__(self):
+        return self.shelf.name
     
+
+# class Vehicle(models.Model): 
+
+#     STATUS = (
+#             ('Pending', 'Pending'),
+#             ('Approved', 'Approved'),
+#             )
+
+#     license_plate = models.CharField(max_length=50, null=True)
+#     make = models.CharField(max_length=50, null=True)
+#     status = models.CharField(max_length=200, null=True, choices=STATUS)
+
+#     def __str__(self):
+#         return self.shelf.name

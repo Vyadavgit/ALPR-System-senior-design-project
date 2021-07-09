@@ -38,11 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'phone_field',
+    #'accounts'
+    #'phone_field',
+    
     'accounts.apps.AccountsConfig',
-    'license.apps.LicenseConfig',
-
-    'django_filters',
 
 ]
 

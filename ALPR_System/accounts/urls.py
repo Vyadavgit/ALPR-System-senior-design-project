@@ -9,6 +9,10 @@ urlpatterns = [
     path('login/', views.loginFn, name="login"),
     path('register/', views.registerFn, name = "register"),
     path('logout/', views.logoutFn, name = "logout"),
+    path('add_resident/', views.addResident, name = "add_resident"),
+    #path('add_vehicle/', views.addVehicle, name = "add_vehicle"),
+    # path('update_vehicle/', views.updateVehicle, name="update_vehicle"),
+    # path('delete_vehicle/', views.deleteVehicle, name="delete_vehicle"),
 
     path('reset_password/',
          auth_views.PasswordResetView.as_view(template_name="accounts/reset_Password.html"),

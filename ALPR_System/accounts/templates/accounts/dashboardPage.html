@@ -12,7 +12,7 @@
         <h5>Residents:</h5>
         <hr>
         <div class="card card-body">
-            <a class="btn btn-primary  btn-sm btn-block" href="">Add Resident</a>
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'add_resident' %}">Add Resident</a>
             <table class="table table-sm">
                 <tr>
                     <th></th>
@@ -37,6 +37,18 @@
                     <th>Update</th>
                     <th>Remove</th>
                 </tr>
+
+<!--                 {% for vehicles in vehicles %}
+                    <tr>
+                        <td>{{vehicles.license_plate}}</td>
+                        <td>{{vehicles.make}}</td>
+                        <td>{{vehicles.status}}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'update_vehicle' vehicle.id %}">Update</a></td>
+
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' vehicle.id %}">Delete</a></td>
+
+                    </tr>
+                {% endfor %} -->
         
             </table>
         </div>
@@ -45,3 +57,4 @@
 </div>
 
 {% endblock %}
+

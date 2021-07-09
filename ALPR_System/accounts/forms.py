@@ -18,3 +18,13 @@ class UserRegistrationForm(UserCreationForm):
         user_input = self.cleaned_data.get("email")
         return user_input
 
+class AddResidentForm(ModelForm):
+    class Meta:
+        model = Resident
+        fields = ['name', 'apartment_unit']
+
+# class AddVehicleForm(ModelForm):
+#     class Meta:
+#         model = Vehicle
+#         fields = '__all__' # ['License_Plate', 'Make', 'Status', 'Update', 'Remove']
+
