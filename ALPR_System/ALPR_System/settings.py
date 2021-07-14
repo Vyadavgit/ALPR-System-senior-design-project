@@ -38,10 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #'accounts'
-    #'phone_field',
-    
+    'phone_field',
     'accounts.apps.AccountsConfig',
+    'license.apps.LicenseConfig',
 
 ]
 
@@ -86,7 +85,7 @@ DATABASES = {
     }
 }
 
-#LOCAL POSTGRES DATABASE FOR HOSTING STATIC FILES LOCALLY
+# #LOCAL POSTGRES DATABASE FOR HOSTING STATIC FILES LOCALLY
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -97,6 +96,7 @@ DATABASES = {
 #         'PORT': '***'
 #     }
 # }
+
 
 
 # Password validation
