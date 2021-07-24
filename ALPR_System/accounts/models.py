@@ -29,7 +29,7 @@ class Resident(models.Model):
     apartment_unit = models.CharField(max_length=50, null=True)
 
     def __str__(self):
-        return self.shelf.name
+        return self.name
     
 
 # class Vehicle(models.Model): 
@@ -44,4 +44,4 @@ class Resident(models.Model):
 #     status = models.CharField(max_length=200, null=True, choices=STATUS)
 
 #     def __str__(self):
-#         return self.shelf.name
+#         return self.name

@@ -52,7 +52,12 @@ def logoutFn(request):
     return redirect('home')
 
 def dashboardFn(request):
-    return render(request, 'accounts/dashboardPage.html', {})
+    residents = Resident.objects.all()
+
+    context = {'residents':residents}
+
+    return render(request, 'accounts/dashboardPage.html', context)
+
 
 def addResident(request):
     form = AddResidentForm()
@@ -66,6 +71,20 @@ def addResident(request):
 
     context = {'form': form}
     return render(request, 'accounts/add_resident.html', context)
+
+# def addResident(request):
+#     form = AddResidentForm()
+
+#     if request.method == 'POST':
+#         print('Printing POST:', request.POST)
+#         form = AddResidentForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('dashboard')
+
+#     context = {'form': form}
+#     return render(request, 'accounts/add_resident.html', context)
+
 
 # def addVehicle(request):
 #     form = AddVehicleForm()

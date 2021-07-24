@@ -84,6 +84,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+#Bishalsthaa
+#LOCAL POSTGRES DATABASE FOR HOSTING STATIC FILES LOCALLY
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'DEMO_TEST',
+#         'USER': 'postgres',
+#         'PASSWORD': 'H0meworkspring2021',
+#         'HOST': 'localhost',
+#         'PORT': '5433'
+#     }
+# }
 
 #LOCAL POSTGRES DATABASE FOR HOSTING STATIC FILES LOCALLY
 # DATABASES = {
