@@ -5,6 +5,7 @@
 {%  include 'accounts/status.html' %}
 
 
+
 <br>
 
 <div class="row">
@@ -15,10 +16,18 @@
             <a class="btn btn-primary  btn-sm btn-block" href="{% url 'add_resident' %}">Add Resident</a>
             <table class="table table-sm">
                 <tr>
-                    <th></th>
+                    <!-- <th></th> -->
                     <th>Resident's name</th>
                     <th>Apartment unit</th>
                 </tr>
+
+                {% for resident in residents %}
+                    <tr>
+                        <td>{{resident.name}}</td>
+                        <td>{{resident.apartment_unit}}</td>
+                        
+                    </tr>
+                {% endfor %}
 
             </table>
         </div>
@@ -38,7 +47,7 @@
                     <th>Remove</th>
                 </tr>
 
-<!--                 {% for vehicles in vehicles %}
+                {% for vehicles in vehicles %}
                     <tr>
                         <td>{{vehicles.license_plate}}</td>
                         <td>{{vehicles.make}}</td>
@@ -48,7 +57,7 @@
                         <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' vehicle.id %}">Delete</a></td>
 
                     </tr>
-                {% endfor %} -->
+                {% endfor %}
         
             </table>
         </div>
