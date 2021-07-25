@@ -7,13 +7,13 @@ from .forms import *
 from .forms import UserRegistrationForm
 from .decorators import unauthenticated_user
 from .forms import AddResidentForm
-# from .forms import AddVehicleForm
+from .forms import AddVehicleForm
 
 
 # Create your views here.
 @unauthenticated_user
 def homeFn(request):
-    return render(request, "accounts/homePage.html")
+    return render(request, "accounts/homePage.html", {})
 
 @unauthenticated_user
 def registerFn(request):
@@ -52,14 +52,14 @@ def logoutFn(request):
     return redirect('home')
 
 def dashboardFn(request):
+    vehicles = Vehicle.objects.all()
     residents = Resident.objects.all()
 
-    context = {'residents':residents}
+    context = {'vehicles': vehicles,'residents':residents}
 
     return render(request, 'accounts/dashboardPage.html', context)
 
-
-def addResident(request):
+def residents(request):
     form = AddResidentForm()
 
     if request.method == 'POST':
@@ -72,56 +72,43 @@ def addResident(request):
     context = {'form': form}
     return render(request, 'accounts/add_resident.html', context)
 
-# def addResident(request):
-#     form = AddResidentForm()
+def vehicles(request):
+    form = AddVehicleForm()
 
-#     if request.method == 'POST':
-#         print('Printing POST:', request.POST)
-#         form = AddResidentForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('dashboard')
+    if request.method == 'POST':
+        # print('Printing POST:', request.POST)
+        form = AddVehicleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
 
-#     context = {'form': form}
-#     return render(request, 'accounts/add_resident.html', context)
-
-
-# def addVehicle(request):
-#     form = AddVehicleForm()
-
-#     if request.method == 'POST':
-#         print('Printing POST:', request.POST)
-#         form = AddVehicleForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-
-#     context = {'form': form}
-#     return render(request, 'accounts/add_vehicle.html', context)
+    context = {'form': form}
+    return render(request, 'accounts/add_vehicle.html', context)
 
 
-# def updateVehicle(request, pk):
+def updateVehicle(request,pk):
+    vehicle = Vehicle.objects.get(id=pk)
+    form = AddVehicleForm(instance=vehicle)
 
-#     vehicle = Vehicle.objects.get(id=pk)
-#     form = AddVehivleForm(instance=vehicle)
-
-#     if request.method == 'POST':
-#         form = AddVehivleForm(request.POST, instance=vehicle)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
+    if request.method == 'POST':
+        form = AddVehicleForm(request.POST, instance=vehicle)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
  
-#     context = {'form':form}
-#     return render(request, 'accounts/add_vehivle.html', context)
+    context = {'form':form}
+    return render(request, 'accounts/add_vehicle.html', context)
 
-# def deleteOrder(request, pk):
-#     vehicle = Vehicle.objects.get(id=pk)
-#     if request.method == "POST":
-#         vehicle.delete()
-#         return redirect('/')
+def deleteVehicle(request, pk):
+    vehicle = Vehicle.objects.get(id=pk)
+    # form = AddVehicleForm(instance=vehicle)
 
-#     context = {'item':vehicle}
-#     return render(request, 'accounts/delete.html', context)
+    if request.method == "POST":
+        vehicle.delete()
+        return redirect('/')
+
+    context = {'item':vehicle}
+    return render(request, 'accounts/delete.html', context)
 
 
 

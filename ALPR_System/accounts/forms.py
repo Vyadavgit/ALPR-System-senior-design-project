@@ -23,8 +23,8 @@ class AddResidentForm(ModelForm):
         model = Resident
         fields = ['name', 'apartment_unit']
 
-# class AddVehicleForm(ModelForm):
-#     class Meta:
-#         model = Vehicle
-#         fields = '__all__' # ['License_Plate', 'Make', 'Status', 'Update', 'Remove']
+class AddVehicleForm(ModelForm):
+    class Meta:
+        model = Vehicle
+        fields = '__all__' # ['License_Plate', 'Make', 'Status', 'Update', 'Remove']
 

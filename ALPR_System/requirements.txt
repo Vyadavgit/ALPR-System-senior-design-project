@@ -8,7 +8,7 @@ matplotlib==3.4.2
 numpy==1.21.0
 opencv-python==4.5.2.54
 Pillow==8.3.1
-psycopg2==2.9.1
+# psycopg2==2.9.1
 pyparsing==2.4.7
 pytesseract==0.3.8
 python-dateutil==2.8.1
