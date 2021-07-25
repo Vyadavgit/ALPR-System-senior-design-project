@@ -32,16 +32,16 @@ class Resident(models.Model):
         return self.name
     
 
-# class Vehicle(models.Model): 
+class Vehicle(models.Model): 
 
-#     STATUS = (
-#             ('Pending', 'Pending'),
-#             ('Approved', 'Approved'),
-#             )
+    STATUS = (
+            ('Pending', 'Pending'),
+            ('Approved', 'Approved'),
+            )
 
-#     license_plate = models.CharField(max_length=50, null=True)
-#     make = models.CharField(max_length=50, null=True)
-#     status = models.CharField(max_length=200, null=True, choices=STATUS)
+    license_plate = models.CharField(max_length=50, null=True)
+    make = models.CharField(max_length=50, null=True)
+    status = models.CharField(max_length=200, null=True, choices=STATUS)
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.license_plate
