@@ -1,0 +1,48 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+{%  include 'accounts/status.html' %}
+
+<br>
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			{% for customer in fname %}
+			<p>Email: {{customer.email}}</p>
+			<p>Phone: {{customer.phone}}</p>
+			{% endfor %}
+		</div>
+	</div>
+	
+<br> 
+
+
+
+
+
+
+	
+
+{% endblock %}
+
+

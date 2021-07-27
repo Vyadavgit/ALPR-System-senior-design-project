@@ -24,5 +24,6 @@ urlpatterns = [
          name="password_reset_complete"),
 
     path('dashboard/', views.dashboardFn, name="dashboard"),
+    path('customer/', views.customer, name="customer"),
 
 ]

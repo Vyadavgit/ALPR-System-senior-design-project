@@ -7,6 +7,7 @@ from .models import *
 from .forms import *
 from .forms import UserRegistrationForm
 from .decorators import unauthenticated_user
+from .filters import NameFilter
 
 # Create your views here.
 @unauthenticated_user
@@ -57,3 +58,18 @@ def logoutFn(request):
 @login_required(login_url='login')
 def dashboardFn(request):
     return render(request, 'accounts/dashboardPage.html', {})
+
+# def searchfilterFn(request):
+#     return render(request, 'accounts/searchfilter.html', {}
+
+def customer(request):
+    # customer=Customer.objects.get(id) 
+    # fname= Customer.
+    fname=Customer.objects.all()
+
+    myFilter= NameFilter(request.GET, queryset=fname)
+    fname = myFilter.qs
+    
+   
+    context = {'fname':fname,'myFilter': myFilter}
+    return render(request, 'accounts/customer.html',context)
