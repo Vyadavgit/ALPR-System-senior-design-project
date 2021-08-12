@@ -12,18 +12,22 @@
         <h5>Residents:</h5>
         <hr>
         <div class="card card-body">
-            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'add_resident' %}">Add Resident</a>
+            <a class="btn btn-primary  btn-sm btn-block" href="">List of residents</a>
             <table class="table table-sm">
                 <tr>
                     
                     <th>Resident's name</th>
                     <th>Apartment unit</th>
+                    <th>Remove</th>
                 </tr>
 
                 {% for resident in residents %}
                     <tr>
-                        <td>{{resident.name}}</td>
-                        <td>{{resident.apartment_unit}}</td>
+                        {% if resident.user != request.user %}
+                        <td>{{resident}}</td>
+                        <td>{{resident.apt_unit}}</td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_resident' resident.id %}">Delete</a></td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>
@@ -34,9 +38,11 @@
         <h5>List of Vehicles</h5>
         <hr>
         <div class="card card-body">
-            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'add_vehicle' %}">Add vehicle</a>
+            <a class="btn btn-primary  btn-sm btn-block" href="">List of vehicles</a>
             <table class="table table-sm">
                 <tr>
+                    <th>Vehicle owner</th>
+                    <th>Apt Unit</th>
                     <th>License plate</th>
                     <th>Make/Model</th>
                     <th>Status</th>
@@ -46,6 +52,8 @@
 
                 {% for vehicle in vehicles %}
                     <tr>
+                        <td>{{vehicle.owner}}</td>
+                        <td>{{vehicle.owner.apt_unit}}</td>
                         <td>{{vehicle.license_plate}}</td>
                         <td>{{vehicle.make}}</td>
                         <td>{{vehicle.status}}</td>

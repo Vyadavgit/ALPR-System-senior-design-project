@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from accounts.decorators import unauthenticated_user
+from accounts.models import *
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # imports for OenCV and OCR
@@ -71,7 +73,15 @@ def detectFn(request):
             print("OCR result: " + predicted_license)
             print("Filtered OCR result: " + filter_predicted_license)
 
-            messages.success(request,'The vehicle [' + filter_predicted_license + '] entered the parking garage.')
+
+            try:
+                vehicle = Vehicle.objects.get(license_plate = filter_predicted_license)
+                print("Gate opened and access allowed for vehicle " + filter_predicted_license)
+                messages.success(request,'The vehicle [' + filter_predicted_license + '] entered the parking garage.')
+            except ObjectDoesNotExist:
+                print("Access denied for vehicle " + filter_predicted_license + ". Please register your vehicle.")
+                messages.warning(request,'Access denied for vehicle ' + filter_predicted_license + '. Please register your vehicle.')
+                
 
             # increment count for another image
             # since 'detect' url is triggered again at the end of 'detectFn' the increment in count doesn't make any difference(i.e updates NoPlate_0 again and again), however,

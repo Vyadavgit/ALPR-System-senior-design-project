@@ -78,24 +78,24 @@ WSGI_APPLICATION = 'ALPR_System.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-#LOCAL POSTGRES DATABASE FOR HOSTING STATIC FILES LOCALLY
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': '***',
-#         'USER': 'postgres',
-#         'PASSWORD': '****',
-#         'HOST': '***',
-#         'PORT': '***'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+#LOCAL POSTGRES DATABASE FOR HOSTING STATIC FILES LOCALLY
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alpr_system',
+        'USER': 'postgres',
+        'PASSWORD': '****',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
 
 
 # Password validation
@@ -136,9 +136,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# MEDIA_URL = '/images/'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+# MEDIA_ROOT = BASE_DIR / 'static/images'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

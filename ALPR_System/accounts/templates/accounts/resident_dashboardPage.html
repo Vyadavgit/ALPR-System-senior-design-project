@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+
+<h1>Profile</h1> <a href="{% url 'logout' %}">logout</a>
+
+<h3>Personal Information</h3>
+<!-- <img src="{{curr_resident.profile_picture.url}}"/> -->
+<p>Name: {{curr_resident.first_name}} {{curr_resident.last_name}}</p>
+<p>UserId: {{curr_resident.user}}</p>
+<p>Gender: {{curr_resident.gender}}</p>
+<p>DOB: {{curr_resident.birth_date}}</p>
+<p>Email: {{curr_resident.email}}</p>
+<p>Phone: {{curr_resident.phone}}</p>
+
+<a href="{% url 'edit_profile' %}">Edit personal information</a>
+
+<h3>Vehicle Information</h3>
+<a href="{% url 'register_vehicle' %}">Register your vehicle</a>
+
+<ol>
+    {% for vehicle in vehicles %}
+    <li>{{vehicle}} {{vehicle.make}} {{vehicle.model}} {{vehicle.year}} {{vehicle.color}} Status: {{vehicle.status}} 
+        <a class="btn btn-sm btn-danger" href="{% url 'delete_vehicle' vehicle.id %}">Delete</a>
+    </li>
+    {% endfor %}
+</ol>
+
+
+
+
+
