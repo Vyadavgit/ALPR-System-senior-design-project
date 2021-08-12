@@ -43,10 +43,3 @@ class Vehicle(models.Model):
     
     def __str__(self):
         return self.license_plate
-
-class Resident(models.Model):
-    name = models.CharField(max_length=50, null=True)
-    apartment_unit = models.CharField(max_length=50, null=True)
-
-    def __str__(self):
-        return self.name

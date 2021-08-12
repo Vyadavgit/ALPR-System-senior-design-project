@@ -39,11 +39,6 @@ class vehicleRegistrationForm(ModelForm):
         fields = '__all__'
         exclude = ['owner', 'status']
 
-class AddResidentForm(ModelForm):
-    class Meta:
-        model = Resident
-        fields = ['name', 'apartment_unit']
-
 class AddVehicleForm(ModelForm):
     class Meta:
         model = Vehicle
