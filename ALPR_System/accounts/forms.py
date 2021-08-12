@@ -18,6 +18,27 @@ class UserRegistrationForm(UserCreationForm):
         user_input = self.cleaned_data.get("email")
         return user_input
 
+class CustomerForm(ModelForm):
+    first_name = forms.CharField(required=True, widget=forms.TextInput(attrs={"placeholder": "Enter first "
+                                                                                             "name"}))
+    last_name = forms.CharField(required=True, widget=forms.TextInput(attrs={"placeholder": "Enter last name"}))
+    gender = forms.CharField(required=True, widget=forms.TextInput(attrs={"placeholder": "Enter your gender: "
+                                                                                         "Male/Female/Other"}))
+    birth_date = forms.DateField(required=True, widget=forms.TextInput(attrs={"placeholder": "Enter your birth date: "
+                                                                                             "yyyy-mm-dd"}))
+    email = forms.CharField(required=True, widget=forms.TextInput(attrs={"placeholder": "Enter email address"}))
+
+    class Meta:
+        model = Customer
+        fields = '__all__'
+        exclude = ['user']
+
+class vehicleRegistrationForm(ModelForm):
+    class Meta:
+        model = Vehicle
+        fields = '__all__'
+        exclude = ['owner', 'status']
+
 class AddResidentForm(ModelForm):
     class Meta:
         model = Resident

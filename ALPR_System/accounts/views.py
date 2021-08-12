@@ -21,9 +21,13 @@ def registerFn(request):
 
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
+
         if form.is_valid():
-            form.save()
+            curr_user = form.save()
             username = form.cleaned_data.get('username')
+
+            # customer (associated with the current registered user) created with provided minimal info during registeration
+            Customer.objects.create(user = curr_user, first_name=form.cleaned_data.get('first_name'), last_name=form.cleaned_data.get('last_name'), email=form.cleaned_data.get('email') )
 
             messages.success(request, 'Account successfully created for + ' + username)
 
@@ -52,12 +56,58 @@ def logoutFn(request):
     return redirect('home')
 
 def dashboardFn(request):
-    vehicles = Vehicle.objects.all()
-    residents = Resident.objects.all()
+    if request.user.is_staff:
+        vehicles = Vehicle.objects.all()
+        residents = Resident.objects.all()
+        context = {'vehicles': vehicles,'residents':residents}
+        return render(request, 'accounts/dashboardPage.html', context)
+    else:
+        curr_resident = Customer.objects.get(user=request.user)
+        vehicles = Vehicle.objects.filter(owner=curr_resident)
+        context = {'curr_resident': curr_resident, 'vehicles': vehicles}
+        return render(request, 'accounts/resident_dashboardPage.html', context)
 
-    context = {'vehicles': vehicles,'residents':residents}
+def editProfileFn(request):
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(user=request.user)
 
-    return render(request, 'accounts/dashboardPage.html', context)
+    form = CustomerForm(instance=customer)
+    context = {'form': form, 'customer': customer}
+
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your profile information has been updated successfully.")
+            return redirect("/")
+        else:
+            messages.warning(request, 'PLease enter valid information following specified formats.')
+    return render(request, 'accounts/edit_ProfilePage.html', context)
+
+def registerVehicleFn(request):
+    form = vehicleRegistrationForm()
+
+    if request.method == 'POST':
+        curr_customer = Customer.objects.get(user=request.user)
+        vehicle = Vehicle.objects.create(owner=curr_customer)
+        form = vehicleRegistrationForm(request.POST, instance=vehicle)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your vehicle registration has been submittted for approval.")
+            return redirect("/")
+        else:
+            messages.warning(request, 'PLease enter valid information in correct formats.')
+    context = {'form': form}
+    return render(request, 'accounts/register_vehiclePage.html', context)
+
+
+
+
+
+
+
+
 
 def residents(request):
     form = AddResidentForm()

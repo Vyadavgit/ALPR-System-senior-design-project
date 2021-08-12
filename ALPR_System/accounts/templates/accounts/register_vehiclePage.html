@@ -1,0 +1,23 @@
+{% load static %}
+
+    <!--  form tag below contains special customization for profile pic uploading feature  -->
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label>{{ field.label }}</label>
+                </div>
+                <div class="col-md-10">
+                    <p>{{field}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-md-8">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Register"/>
+                <a class="profile-edit-btn" name="btnAddMore" href="{% url 'dashboard' %}">Back</a>
+            </div>
+
+        </form>
+

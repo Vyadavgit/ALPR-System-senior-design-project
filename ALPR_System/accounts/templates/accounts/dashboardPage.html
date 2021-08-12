@@ -37,6 +37,8 @@
             <a class="btn btn-primary  btn-sm btn-block" href="{% url 'add_vehicle' %}">Add vehicle</a>
             <table class="table table-sm">
                 <tr>
+                    <th>Vehicle owner</th>
+                    <th>Apt Unit</th>
                     <th>License plate</th>
                     <th>Make/Model</th>
                     <th>Status</th>
@@ -46,6 +48,8 @@
 
                 {% for vehicle in vehicles %}
                     <tr>
+                        <td>{{vehicle.owner}}</td>
+                        <td>{{vehicle.owner.apt_unit}}</td>
                         <td>{{vehicle.license_plate}}</td>
                         <td>{{vehicle.make}}</td>
                         <td>{{vehicle.status}}</td>

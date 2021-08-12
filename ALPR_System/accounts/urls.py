@@ -28,6 +28,9 @@ urlpatterns = [
          name="password_reset_complete"),
 
     path('dashboard/', views.dashboardFn, name="dashboard"),
+
+    path('edit_profile/', views.editProfileFn, name="edit_profile"),
+    path('register_vehicle/', views.registerVehicleFn, name="register_vehicle"),
     
 
 ]

@@ -13,9 +13,11 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=50, null=True)
     gender = models.CharField(max_length=25, blank=True)
     birth_date = models.DateField(null=True)
-    # profile_picture = models.ImageField(default="profile_null.png", null=True, blank=True)
+    # profile_picture = models.ImageField(default="profile_null.jpg", null=True, blank=True)
     email = models.EmailField(max_length=254)
     phone = PhoneField(blank=True, help_text='Contact phone number')
+    apt_unit = models.IntegerField(null=True, blank=True)
+
 
     def __str__(self):
         if self.first_name and self.last_name:
@@ -24,24 +26,27 @@ class Customer(models.Model):
             identity = str(self.id)
         return identity
 
+class Vehicle(models.Model): 
+    license_plate = models.CharField(max_length=50, null=True, blank=True)
+    owner = models.ForeignKey(Customer, null=True, blank=True, on_delete=models.CASCADE)
+    make = models.CharField(max_length=50, null=True, blank=True)
+    model = models.CharField(max_length=100, null=True, blank=True)
+    year = models.IntegerField(null=True, blank=True)
+    color = models.CharField(max_length=50, null=True, blank=True)
+    vehicle_class = models.CharField(max_length=50, null=True, blank=True)
+
+    STATUS = (
+            ('Pending', 'Pending'),
+            ('Approved', 'Approved'),
+            )
+    status = models.CharField(default="Pending", max_length=200, null=True, choices=STATUS)
+    
+    def __str__(self):
+        return self.license_plate
+
 class Resident(models.Model):
     name = models.CharField(max_length=50, null=True)
     apartment_unit = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return self.name
-    
-
-class Vehicle(models.Model): 
-
-    STATUS = (
-            ('Pending', 'Pending'),
-            ('Approved', 'Approved'),
-            )
-
-    license_plate = models.CharField(max_length=50, null=True)
-    make = models.CharField(max_length=50, null=True)
-    status = models.CharField(max_length=200, null=True, choices=STATUS)
-
-    def __str__(self):
-        return self.license_plate
