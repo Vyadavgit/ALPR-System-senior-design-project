@@ -36,4 +36,4 @@ Run server command: ***python manage.py runserver***
 1. Install Tesseract-OCR in the 'site-packages' folder of your virtual environment and provide path to it in 'license/views.py' file for the license detection and OCR program to work well.
 2. After installation of cv2 in your virtual environment, provide path to CascadeClassifier file 'haarcascade_russian_plate_number' located at "<name_of_virtualenv>/Lib/site-packages/cv2/data/" in your 'license/views.py' file.
 3. Press key 's' to save the recognized license plate.
-4. Press key 'd' to terminate the license detection program.
+4. Press key 'd' to terminate the license detection program while the license plate is being detected on the capture screen.
