@@ -34,6 +34,8 @@ class Vehicle(models.Model):
     year = models.IntegerField(null=True, blank=True)
     color = models.CharField(max_length=50, null=True, blank=True)
     vehicle_class = models.CharField(max_length=50, null=True, blank=True)
+    parked = models.BooleanField(default=False, blank=True, null=True)
+    
 
     STATUS = (
             ('Pending', 'Pending'),
@@ -43,3 +45,6 @@ class Vehicle(models.Model):
     
     def __str__(self):
         return self.license_plate
+
+class Parkingspace(models.Model):
+    total_space = models.IntegerField(null=True, blank=True)

@@ -31,6 +31,8 @@ urlpatterns = [
 
     path('edit_profile/', views.editProfileFn, name="edit_profile"),
     path('register_vehicle/', views.registerVehicleFn, name="register_vehicle"),
+    path('update_total_space/', views.updateTotalSpaceFn, name="update_total_space"),
+    
     
 
 ]

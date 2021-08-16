@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 
 from accounts.decorators import unauthenticated_user
 from accounts.models import *
-from django.core.exceptions import ObjectDoesNotExist
 
 
 # imports for OenCV and OCR
@@ -34,6 +34,15 @@ def detectFn(request):
 
     while True:
         success, img = cap.read()
+
+        # press key 'd' to deactivate the camera/terminate the detection program
+        if cv2.waitKey(1) & 0xFF == ord('d'):
+            cv2.waitKey(1)
+            cv2.destroyAllWindows()
+            cv2.waitKey(1)
+            messages.success(request,'License detection deactivated.')
+            return redirect('dashboard')
+
         # img = cv2.imread('Resources/lena.png') # comment left for rererence 
         imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         numberPlates = nPlateCascade.detectMultiScale(imgGray, 1.1, 10)
@@ -76,10 +85,31 @@ def detectFn(request):
 
             try:
                 vehicle = Vehicle.objects.get(license_plate = filter_predicted_license)
-                print("Gate opened and access allowed for vehicle " + filter_predicted_license)
-                messages.success(request,'The vehicle [' + filter_predicted_license + '] entered the parking garage.')
+                print("Gate opened and access allowed for vehicle " + filter_predicted_license + ".")
+                print('\n')
+
+                # TODO
+                # Initial parking status:
+                print("Initial parking status: " + str(vehicle.parked))
+                if vehicle.parked is False:
+                    vehicle.parked=True
+                    vehicle.save()
+                    print('The vehicle [' + filter_predicted_license + '] entered the parking garage.')
+                    messages.success(request,'The vehicle [' + filter_predicted_license + '] entered the parking garage.')
+                    
+                else:
+                    vehicle.parked=False
+                    vehicle.save()
+                    print('The vehicle [' + filter_predicted_license + '] exited the parking garage.')
+                    messages.success(request,'The vehicle [' + filter_predicted_license + '] exited the parking garage.')
+
+                # Final parking status:
+                print("Final parking status: " + str(vehicle.parked))      
+                print('\n')    
+
             except ObjectDoesNotExist:
                 print("Access denied for vehicle " + filter_predicted_license + ". Please register your vehicle.")
+                print('\n')
                 messages.warning(request,'Access denied for vehicle ' + filter_predicted_license + '. Please register your vehicle.')
                 
 
@@ -91,13 +121,15 @@ def detectFn(request):
 
             return redirect('detect')
 
-        # press key 'd' to deactivate the camera/terminate the detection program
-        elif cv2.waitKey(1) & 0xFF == ord('d'):
-            cv2.waitKey(1)
-            cv2.destroyAllWindows()
-            cv2.waitKey(1)
-            messages.success(request,'License detection deactivated.')
-            return redirect('dashboard')
+        # this code segment has been moved up from here for better performance/easy termination of the detection program
+        # # press key 'd' to deactivate the camera/terminate the detection program (this elif condition if put here only works while the rectange has been detected
+        # and is in the state of being recognized)
+        # elif cv2.waitKey(1) & 0xFF == ord('d'):
+        #     cv2.waitKey(1)
+        #     cv2.destroyAllWindows()
+        #     cv2.waitKey(1)
+        #     messages.success(request,'License detection deactivated.')
+        #     return redirect('dashboard')
 
 @login_required(login_url='login')
 def notificationsFn(request):

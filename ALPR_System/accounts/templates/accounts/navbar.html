@@ -7,14 +7,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Dashboard</a>
+        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
       </li>
+      {% if request.user.is_staff %}
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'detect' %}">Activate camera</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'notifications' %}">Notifications</a>
       </li>
+      {% endif %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'logout' %}">logout</a>
       </li>
