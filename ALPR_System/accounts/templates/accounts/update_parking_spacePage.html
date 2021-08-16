@@ -1,24 +1,48 @@
 {%  extends 'accounts/main.html' %}
 {% load static %}
 {% block content %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Parking spaces</title>
+	</head>
+    <body>
 
-        <form method="post" action="">
-            {% csrf_token %}
+    </body>
+    <br>
+    <div class="row" class="card">
+        <div class="col-md-12">
 
-            {% for field in form %}
-            <div class="row">
-                <div class="col-md-6">
-                    <label>{{ field.label }}</label>
-                </div>
-                <div class="col-md-10">
-                    <p>{{field}}</p>
-                </div>
-            </div>
-            {% endfor %}
-            <div class="col-md-8">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Update"/>
+            <div class="card-header">
+                <h3 align="center">Total parking spaces</h3>
             </div>
 
-        </form>
+            <div  class="card card-body">
+
+
+                <form method="post" action="">
+                    {% csrf_token %}
+        
+                    {% for field in form %}
+                    <div class="row" align="center">
+                        <div class="col-md-12">
+                            <label><b>{{ field.label }}:</b> {{field}}</label>
+                        </div>
+                    </div>
+                    <br>
+                    {% endfor %}
+
+                    <div class="card-footer" align="center">
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Update"/>
+                    </div>
+        
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
 
 {% endblock %}
