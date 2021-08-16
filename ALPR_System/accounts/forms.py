@@ -1,3 +1,4 @@
+from django.db.models import fields
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import User
@@ -37,10 +38,16 @@ class vehicleRegistrationForm(ModelForm):
     class Meta:
         model = Vehicle
         fields = '__all__'
-        exclude = ['owner', 'status']
+        exclude = ['owner', 'status', 'parked']
 
-class AddVehicleForm(ModelForm):
+class updateVehicleForm(ModelForm):
     class Meta:
         model = Vehicle
-        fields = '__all__' # ['License_Plate', 'Make', 'Status', 'Update', 'Remove']
+        fields = '__all__'
+
+class updateTotalSpaceForm(ModelForm):
+    class Meta:
+        model = Parkingspace
+        fields = '__all__'
+
 

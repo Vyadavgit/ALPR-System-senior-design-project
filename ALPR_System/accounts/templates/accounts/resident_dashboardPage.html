@@ -1,31 +1,111 @@
+{%  extends 'accounts/main.html' %}
 {% load static %}
-<!DOCTYPE html>
 
-<h1>Profile</h1> <a href="{% url 'logout' %}">logout</a>
-
-<h3>Personal Information</h3>
-<!-- <img src="{{curr_resident.profile_picture.url}}"/> -->
-<p>Name: {{curr_resident.first_name}} {{curr_resident.last_name}}</p>
-<p>UserId: {{curr_resident.user}}</p>
-<p>Gender: {{curr_resident.gender}}</p>
-<p>DOB: {{curr_resident.birth_date}}</p>
-<p>Email: {{curr_resident.email}}</p>
-<p>Phone: {{curr_resident.phone}}</p>
-
-<a href="{% url 'edit_profile' %}">Edit personal information</a>
-
-<h3>Vehicle Information</h3>
-<a href="{% url 'register_vehicle' %}">Register your vehicle</a>
-
-<ol>
-    {% for vehicle in vehicles %}
-    <li>{{vehicle}} {{vehicle.make}} {{vehicle.model}} {{vehicle.year}} {{vehicle.color}} Status: {{vehicle.status}} 
-        <a class="btn btn-sm btn-danger" href="{% url 'delete_vehicle' vehicle.id %}">Delete</a>
-    </li>
-    {% endfor %}
-</ol>
+{% block content %}
 
 
+<br>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-orders">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Total Space</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{total_parking_slots}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-delivered">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Space occupied</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{space_occupied}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-pending">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Space vacant</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{space_vacant}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
+<br>
+
+<div class="row">
+    <div class="col-md-5">
+        <h5>Profile information:</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'edit_profile' %}">Edit profile</a>
+            <table class="table table-sm">
+               
+                    <!-- <tr><img src="{{curr_resident.profile_picture.url}}"/></tr> -->
+                    <tr><td><b>Name:</b> {{curr_resident.first_name}} {{curr_resident.last_name}}</td></tr>
+                    <tr><td><b>UserId:</b> {{curr_resident.user}}</td></tr>
+                    <tr><td><b>Apt #</b> {{curr_resident.apt_unit}}</td></tr>
+                    <tr><td><b>Gender:</b> {{curr_resident.gender}}</td></tr>
+                    <tr><td><b>DOB:</b> {{curr_resident.birth_date}}</td></tr>
+                    <tr><td><b>Email:</b> {{curr_resident.email}}</td></tr>
+                    <tr><td><b>Phone:</b> {{curr_resident.phone}}</td></tr>
+               
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <h5>Vehicles:</h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'register_vehicle' %}">Register new vehicle</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>License plate</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Color</th>
+                    <th>Status</th>
+                    <th>Remove</th>
+                </tr>
+
+                {% for vehicle in vehicles %}
+                
+                    <tr>
+                        <td>{{vehicle}}</td>
+                        <td>{{vehicle.make}}</td>
+                        <td>{{vehicle.model}}</td>
+                        <td>{{vehicle.year}}</td>
+                        <td>{{vehicle.color}}</td>
+                        <td>{{vehicle.status}}</td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_vehicle' vehicle.id %}">Delete</a></td>
+                    </tr>
+                            
+                {% endfor %}
+        
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
 

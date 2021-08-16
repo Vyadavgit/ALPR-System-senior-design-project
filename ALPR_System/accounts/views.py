@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import *
 from .forms import *
@@ -57,15 +58,18 @@ def logoutFn(request):
 
 @login_required(login_url='login')
 def dashboardFn(request):
+    total_parking_slots = Parkingspace.objects.get(id=1).total_space
+    space_occupied = Vehicle.objects.filter(parked=True).count()
+    space_vacant = total_parking_slots - space_occupied
     if request.user.is_staff:
         vehicles = Vehicle.objects.all()
         residents = Customer.objects.all()
-        context = {'vehicles': vehicles,'residents':residents}
+        context = {'vehicles': vehicles,'residents':residents, 'total_parking_slots': total_parking_slots, 'space_occupied':space_occupied, 'space_vacant':space_vacant}
         return render(request, 'accounts/dashboardPage.html', context)
     else:
         curr_resident = Customer.objects.get(user=request.user)
         vehicles = Vehicle.objects.filter(owner=curr_resident)
-        context = {'curr_resident': curr_resident, 'vehicles': vehicles}
+        context = {'curr_resident': curr_resident, 'vehicles': vehicles, 'total_parking_slots': total_parking_slots, 'space_occupied':space_occupied, 'space_vacant':space_vacant}
         return render(request, 'accounts/resident_dashboardPage.html', context)
 
 @login_required(login_url='login')
@@ -107,10 +111,10 @@ def registerVehicleFn(request):
 @login_required(login_url='login')
 def updateVehicle(request,pk):
     vehicle = Vehicle.objects.get(id=pk)
-    form = AddVehicleForm(instance=vehicle)
+    form = updateVehicleForm(instance=vehicle)
 
     if request.method == 'POST':
-        form = AddVehicleForm(request.POST, instance=vehicle)
+        form = updateVehicleForm(request.POST, instance=vehicle)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -141,6 +145,28 @@ def deleteResident(request, pk):
 
     context = {'item':resident}
     return render(request, 'accounts/deleteResident.html', context)
+
+@login_required(login_url='login')
+def updateTotalSpaceFn(request):
+    form = updateTotalSpaceForm()
+
+    if request.method == 'POST':
+        try:
+            Parking_obj = Parkingspace.objects.get(id=1)
+            form = updateTotalSpaceForm(request.POST, instance=Parking_obj)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        except ObjectDoesNotExist:
+            form = updateTotalSpaceForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+
+    context = {'form':form}
+    return render(request, 'accounts/update_parking_spacePage.html', context)
+
+
 
 
 
