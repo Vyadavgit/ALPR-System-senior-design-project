@@ -50,6 +50,8 @@ Run server command:  ***python manage.py runserver***
 
 
 8. Visit server http://127.0.0.1:8000/ to visit the ALPR System web app.
+9. Press key 's' to save the recognized license plate.
+10. Press key 'd' to terminate the license detection program.
 
 
 <b>Info for contributers:</b> <br />
