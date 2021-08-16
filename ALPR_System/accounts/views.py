@@ -8,6 +8,7 @@ from .models import *
 from .forms import *
 from .forms import UserRegistrationForm
 from .decorators import unauthenticated_user
+from .filters import *
 
 
 # Create your views here.
@@ -56,14 +57,30 @@ def logoutFn(request):
 
 @login_required(login_url='login')
 def dashboardFn(request):
-    total_parking_slots = Parkingspace.objects.get(id=1).total_space
+    try:
+        ParkingspaceObj = Parkingspace.objects.get(id=1)
+    except ObjectDoesNotExist:
+        ParkingspaceObj = Parkingspace.objects.create(total_space = 100)
+
+    total_parking_slots = ParkingspaceObj.total_space
     space_occupied = Vehicle.objects.filter(parked=True).count()
     space_vacant = total_parking_slots - space_occupied
     if request.user.is_staff:
         vehicles = Vehicle.objects.all()
         residents = Customer.objects.all()
-        context = {'vehicles': vehicles,'residents':residents, 'total_parking_slots': total_parking_slots, 'space_occupied':space_occupied, 'space_vacant':space_vacant}
-        return render(request, 'accounts/dashboardPage.html', context)
+
+        searchFilter = VehicleFilter(request.GET, queryset=vehicles)
+        searchedObjects = searchFilter.qs
+
+        if vehicles.count() != searchedObjects.count():
+            vehicles = searchedObjects
+            context = {'vehicles': vehicles,'residents':residents, 'total_parking_slots': total_parking_slots, 'space_occupied':space_occupied, 'space_vacant':space_vacant, 'searchFilter': searchFilter}
+            return render(request, 'accounts/dashboardPage.html', context)
+        else:
+            context = {'vehicles': vehicles,'residents':residents, 'total_parking_slots': total_parking_slots, 'space_occupied':space_occupied, 'space_vacant':space_vacant, 'searchFilter':searchFilter}
+            return render(request, 'accounts/dashboardPage.html', context)
+
+
     else:
         curr_resident = Customer.objects.get(user=request.user)
         vehicles = Vehicle.objects.filter(owner=curr_resident)
