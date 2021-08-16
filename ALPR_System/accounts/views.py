@@ -30,8 +30,6 @@ def registerFn(request):
             Customer.objects.create(user = curr_user, first_name=form.cleaned_data.get('first_name'), last_name=form.cleaned_data.get('last_name'), email=form.cleaned_data.get('email') )
 
             messages.success(request, 'Account successfully created for ' + username)
-
-            return redirect('login')
     
     context = {'form': form}
     return render(request, 'accounts/registerPage.html', context)
@@ -85,7 +83,6 @@ def editProfileFn(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Your profile information has been updated successfully.")
-            return redirect("/")
         else:
             messages.warning(request, 'PLease enter valid information following specified formats.')
     return render(request, 'accounts/edit_ProfilePage.html', context)
@@ -102,7 +99,6 @@ def registerVehicleFn(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Your vehicle registration has been submittted for approval.")
-            return redirect("/")
         else:
             messages.warning(request, 'PLease enter valid information in correct formats.')
     context = {'form': form}

@@ -107,13 +107,29 @@
                     </div>
                 </form>
             </div>
-        <div align="center">
-            <a href="{% url 'login' %}" class="down_btn">Already registered?</a>
-            <div>
-                {{form.errors}}
+            <div class="card-footer">
+                <div class="d-flex justify-content-center links">
+                    <a href="{% url 'login' %}">Already registered?</a> <a href="{% url 'home' %}">Back</a>
+                </div>
+
+                    <div>
+                        {{form.errors}}
+                    </div>
             </div>
-            <a href="{% url 'home' %}" class="down_btn">Back</a>
-        </div>   
+
+        
+        
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+
         </div>
     </div>
 </div>

@@ -1,15 +1,43 @@
 {%  extends 'accounts/main.html' %}
 {% load static %}
 {% block content %}
-
-
 <!DOCTYPE html>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+<html>
+	<head>
+		<title>Notifications</title>
+	</head>
+    <body>
+        <br>
+        <div class="row" class="card">
+            <div class="col-md-12">
+
+                <div class="card-header">
+					<h3 align="center">Important alerts</h3>
+				</div>
+
+            <div  class="card card-body">
+                <div>
+                    <br>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <div class="card-footer" align="center">
+                    <a class="profile-edit-btn" name="btnAddMore" href="{% url 'dashboard' %}">Back</a>
+                </div>
+               
+
+
+            </div>
+
+
+            </div>
+        </div>
+    </body>
 
 {% endblock %}

@@ -1,26 +1,53 @@
 {%  extends 'accounts/main.html' %}
 {% load static %}
 {% block content %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Edit personal information</title>
+	</head>
+<body>
+    <br>
+    <div class="row" class="card">
+        <div class="col-md-12">
 
-    <!--  form tag below contains special customization for profile pic uploading feature  -->
-        <form method="post" action="" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            {% for field in form %}
-            <div class="row">
-                <div class="col-md-6">
-                    <label>{{ field.label }}</label>
-                </div>
-                <div class="col-md-10">
-                    <p>{{field}}</p>
-                </div>
+            <div class="card-header">
+                <h3 align="center">Vehicle registration</h3>
             </div>
+
+            <div  class="card card-body">
+<!--  form tag below contains special customization for profile pic uploading feature  -->
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="row" align="center">
+        <div class="col-md-12">
+            <label><b>{{ field.label }}:</b> {{field}}</label>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+
+    <div class="card-footer" align="center">
+        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Register"/>
+        <a class="profile-edit-btn" name="btnAddMore" href="{% url 'dashboard' %}">Back</a>
+    </div>
+
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
-            <div class="col-md-8">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Register"/>
-                <a class="profile-edit-btn" name="btnAddMore" href="{% url 'dashboard' %}">Back</a>
+        </ul>
+        {% endif %}
+    </div>
+</form>
             </div>
 
-        </form>
+        </div>
+    </div>
+</body>
 
 {% endblock %}
