@@ -54,7 +54,7 @@
         <h5>Residents:</h5>
         <hr>
         <div class="card card-body">
-            <a class="btn btn-primary  btn-sm btn-block" href="">List of residents</a>
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'dashboard' %}">List of residents</a>
             <table class="table table-sm">
                 <tr>
                     
@@ -80,13 +80,29 @@
         <h5>List of Vehicles</h5>
         <hr>
         <div class="card card-body">
-            <a class="btn btn-primary  btn-sm btn-block" href="">List of vehicles</a>
+
+            <br>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="get">
+                        <p><b>{{searchFilter.form}}</b></p>
+        
+                        <button class="btn btn-primary btn-sm btn-block" type="submit">Filter</button>
+                  </form>
+                </div>
+            </div>
+
+          <br>
+          
+            
             <table class="table table-sm">
                 <tr>
                     <th>Vehicle owner</th>
                     <th>Apt Unit</th>
                     <th>License plate</th>
-                    <th>Make/Model</th>
+                    <th>Make</th>
+                    <th>Model</th>
                     <th>Status</th>
                     <th>Update</th>
                     <th>Remove</th>
@@ -98,6 +114,7 @@
                         <td>{{vehicle.owner.apt_unit}}</td>
                         <td>{{vehicle.license_plate}}</td>
                         <td>{{vehicle.make}}</td>
+                        <td>{{vehicle.model}}</td>
                         <td>{{vehicle.status}}</td>
                         <td><a class="btn btn-sm btn-info" href="{% url 'update_vehicle' vehicle.id %}">Update</a></td>
 

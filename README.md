@@ -1,6 +1,58 @@
 # ALPR-System-senior-design-project
+<b>The University of Texas at Arlington - Fall 2021 CSE4316/4317 Seior Design Project.</b>
 
-Info for contributers: <br />
+<b>Team members:</b><br>
+Siddharth Gautam<br>
+Vivek Kumar Yadav<br>
+Bishal Shrestha<br>
+Pranay Shakya<br>
+Anil Bhui<br>
+
+<b>Instructions to setup and run this project:</b>
+1. Clone the project using the command ***git clone https://github.com/Vyadavgit/ALPR-System-senior-design-project.git***
+2. Create virtual environment using command ***python -m venv <name_of_virtualenv>*** and activate it to install project requirements in it.
+3. Navigate to requirements.txt file and install all the requirements in the virtual environment using the command ***pip install -r requirements.txt*** (Please make sure to install 'pip' first if it is not already installed in your system.)
+4. Install Tesseract-OCR in the 'site-packages' folder of your virtual environment using app installer (using the command line may install Tesseract-OCR somewhere else than your virtual environment) and provide path to it in 'license/views.py' file for the license detection and OCR program to function properly.
+5. After installation of cv2 (it may have been already installed while you installed using requirements.txt) in your virtual environment, provide path to CascadeClassifier file 'haarcascade_russian_plate_number' located at "<name_of_virtualenv>/Lib/site-packages/cv2/data/" in your 'license/views.py' file.
+6. Uncomment and use default sqlite3 database given in the settings file ( http://127.0.0.1:8000/admin gives you the admin interface for this database. To access it create admin username and password using the command ***python manage.py createsuperuser*** by navigating to manage.py file):
+
+
+
+        # sqlite3 database
+        DATABASES = {
+         'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+         }
+        }
+
+OR install the postgres database first on your PC and use it as given in the settings file:
+
+
+        # POSTGRES DATABASE LOCAL
+        DATABASES = {
+        Page 4
+         'default': {
+         'ENGINE': 'django.db.backends.postgresql',
+         'NAME': '*******',
+         'USER': '**********',
+         'PASSWORD': ‘*******’,
+         'HOST': 'localhost',
+         'PORT': '****'
+         }
+        }
+
+7. Use following program compilation and run commands to run the project: <br>
+Migrations command: <br>
+***python manage.py makemigrations*** <br>
+***python manage.py migrate***<br>
+Run server command:  ***python manage.py runserver***
+
+
+8. Visit server http://127.0.0.1:8000/ to visit the ALPR System web app.
+
+
+<b>Info for contributers:</b> <br />
 
 Always use this command before creating a branch/writing your code:  
 	***git pull*** :- command to pull the updated source code from the repository.<br />
@@ -28,12 +80,16 @@ Create/update requirements.txt: ***pip freeze > requirements.txt***
 Install requirements.txt: ***pip install -r requirements.txt***
 
 Program compilation instructions:
-<br>
+<br><br>
+Migrations command: <br>
+***python manage.py makemigrations*** <br>
+***python manage.py migrate***
+
 Run server command: ***python manage.py runserver***
 <br>
 
 ***IMPORTANT NOTES:*** 
-1. Install Tesseract-OCR in the 'site-packages' folder of your virtual environment and provide path to it in 'license/views.py' file for the license detection and OCR program to work well.
+1. Install Tesseract-OCR in the 'site-packages' folder of your virtual environment and provide path to it in 'license/views.py' file for the license detection and OCR program to function properly.
 2. After installation of cv2 in your virtual environment, provide path to CascadeClassifier file 'haarcascade_russian_plate_number' located at "<name_of_virtualenv>/Lib/site-packages/cv2/data/" in your 'license/views.py' file.
 3. Press key 's' to save the recognized license plate.
 4. Press key 'd' to terminate the license detection program.
