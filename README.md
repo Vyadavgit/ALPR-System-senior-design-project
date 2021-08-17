@@ -99,3 +99,4 @@ Run server command: ***python manage.py runserver***
 ***References and Credits:***
 1. https://www.youtube.com/watch?v=xv_bwpA_aEA&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO
 2. https://www.youtube.com/watch?v=WQeoO7MI0Bs
+3. https://bootstrapmade.com/demo/Regna/
