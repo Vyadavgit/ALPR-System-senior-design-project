@@ -96,5 +96,6 @@ Run server command: ***python manage.py runserver***
 3. Press key 's' to save the recognized license plate.
 4. Press key 'd' to terminate the license detection program.
 
-***REFERENCES***
-https://www.youtube.com/watch?v=xv_bwpA_aEA&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO
+***References and Credits:***
+1. https://www.youtube.com/watch?v=xv_bwpA_aEA&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO
+2. https://www.youtube.com/watch?v=WQeoO7MI0Bs
