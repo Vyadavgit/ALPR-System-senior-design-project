@@ -95,3 +95,6 @@ Run server command: ***python manage.py runserver***
 2. After installation of cv2 in your virtual environment, provide path to CascadeClassifier file 'haarcascade_russian_plate_number' located at "<name_of_virtualenv>/Lib/site-packages/cv2/data/" in your 'license/views.py' file.
 3. Press key 's' to save the recognized license plate.
 4. Press key 'd' to terminate the license detection program.
+
+***REFERENCES***
+https://www.youtube.com/watch?v=xv_bwpA_aEA&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO
