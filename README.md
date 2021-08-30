@@ -27,34 +27,45 @@ Anil Bhui<br>
         }
 
 OR install the postgres database first on your PC and use it as given in the settings file:
+```
+# POSTGRES DATABASE LOCAL
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '***',
+        'USER': '***',
+        'PASSWORD': '***',
+        'HOST': '***',
+        'PORT': '***'
+    }
+}
+```
+7. To enable forget you password edit SMTP Configuration inside settings.py      
+### Enable Forget password     
 
+```
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = '___your_email_host__'
+EMAIL_PORT = '__port_number__'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '__username__'
+EMAIL_HOST_PASSWORD = '__password__'
 
-        # POSTGRES DATABASE LOCAL
-        DATABASES = {
-        Page 4
-         'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': '*******',
-         'USER': '**********',
-         'PASSWORD': ‘*******’,
-         'HOST': 'localhost',
-         'PORT': '****'
-         }
-        }
+```
 
-7. Use following program compilation and run commands to run the project: <br>
+8. Use following program compilation and run commands to run the project: <br>
 Migrations command: <br>
 ***python manage.py makemigrations*** <br>
 ***python manage.py migrate***<br>
 Run server command:  ***python manage.py runserver***
 
 
-8. Visit server http://127.0.0.1:8000/ to visit the ALPR System web app.
-9. Press key 's' to save the recognized license plate.
-10. Press key 'd' to terminate the license detection program.
+9. Visit server http://127.0.0.1:8000/ to visit the ALPR System web app.
+10. Press key 's' to save the recognized license plate.
+11. Press key 'd' to terminate the license detection program.
 
 
-<b>Info for contributers:</b> <br />
+### Info for contributers:
 
 Always use this command before creating a branch/writing your code:  
 	***git pull*** :- command to pull the updated source code from the repository.<br />
